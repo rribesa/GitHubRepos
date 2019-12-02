@@ -68,7 +68,6 @@ class RepositoriosListaActivity : AppCompatActivity() {
                     is ListaGitHubEvent.NavegarDetalhes -> navegarDetalhes(it.navegarDetalhes)
                     is ListaGitHubEvent.ExibeLoading -> exibeLoading(it.loadingVisibility)
                     is ListaGitHubEvent.ExibeInformacaoCache -> exibeAviso(it.loadingVisibility)
-                    is ListaGitHubEvent.AtualizaInformacoesCache -> atualizaListaCache()
                 }
             }
         })
@@ -88,11 +87,6 @@ class RepositoriosListaActivity : AppCompatActivity() {
         grupoErro.visibility = View.GONE
         loading.visibility = View.GONE
         adapter?.notifyDataSetChanged() ?: preencheLista(itens)
-    }
-
-    private fun atualizaListaCache() {
-        adapter?.notifyDataSetChanged()
-        cardAviso.visibility = View.VISIBLE
     }
 
     private fun exibeErro(exception: Exception) {

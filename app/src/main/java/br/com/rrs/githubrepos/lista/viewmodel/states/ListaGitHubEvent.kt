@@ -6,7 +6,4 @@ sealed class ListaGitHubEvent {
     data class NavegarDetalhes(val navegarDetalhes: GitRepositorio) : ListaGitHubEvent()
     data class ExibeLoading(val loadingVisibility: Int) : ListaGitHubEvent()
     data class ExibeInformacaoCache(val loadingVisibility: Int) : ListaGitHubEvent()
-    data class AtualizaInformacoesCache(val cache: Boolean) : ListaGitHubEvent()
-
-
 }

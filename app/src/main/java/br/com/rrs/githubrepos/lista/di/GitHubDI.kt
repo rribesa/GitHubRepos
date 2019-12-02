@@ -18,7 +18,7 @@ object GitHubDI {
         viewModel { ListaGitHubViewModel(useCase = get()) }
         factory { ListaGitHubUseCase(repository = get()) }
         factory { ListaRepository(service = get(), database = get()) }
-        single { WebClient().service() }
+        single { WebClient.service() }
         single {
             Room.databaseBuilder(
                 get(),

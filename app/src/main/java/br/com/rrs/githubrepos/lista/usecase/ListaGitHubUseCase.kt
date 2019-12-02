@@ -11,9 +11,8 @@ class ListaGitHubUseCase(private val repository: ListaRepository) {
 
     suspend fun listarProximaPaginaRepositoriosGitHub(): MutableList<GitRepositorio> {
         page++
-        return listarRepositoriosGitHub()
+        return repository.listaRepositoriosProximaPagina(this.page)
     }
-
 
     fun aListaEstaLocal() = repository.dadosCache
 }

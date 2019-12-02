@@ -27,6 +27,17 @@ class ListaRepository(private val service: Service, private val database: ListaD
         }
     }
 
+    suspend fun listaRepositoriosProximaPagina(page: Int) = withContext(Dispatchers.IO) {
+        try {
+            listaGitHubRepos.addAll(service.getHubRepos(page = page).repositoriosLista)
+            salvarCache(listaGitHubRepos)
+            return@withContext listaGitHubRepos
+        } catch (exception: Exception) {
+            dadosCache = true
+            throw exception
+        }
+    }
+
     private suspend fun listarRepositoriosCache() = withContext(Dispatchers.IO) {
         dadosCache = true
         return@withContext database.listaDao().getRepositoriosCache()

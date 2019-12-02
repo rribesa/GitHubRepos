@@ -55,12 +55,10 @@ class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel(
                 } else {
                     state.value = ListaGitHubStates.ListaGitHubSucesso(useCase.listarProximaPaginaRepositoriosGitHub())
                 }
-
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 Log.e("Viewmodel", exception.message)
                 event.value = ListaGitHubEvent.ExibeLoading(View.GONE)
-
             }
         }
     }
