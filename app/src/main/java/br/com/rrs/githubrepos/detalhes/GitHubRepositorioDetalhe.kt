@@ -31,7 +31,8 @@ class GitHubRepositorioDetalhe : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_git_hub_repositorio_detalhe, container, false)

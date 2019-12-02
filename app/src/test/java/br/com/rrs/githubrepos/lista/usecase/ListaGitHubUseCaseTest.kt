@@ -38,9 +38,6 @@ class ListaGitHubUseCaseTest {
         coEvery { repository.listarRepositorios(page = 2) } returns gitHubResponse1
         coEvery { repository.listaRepositoriosProximaPagina(page = 2) } returns gitHubResponse1
         coEvery { repositoryCache.listaRepositoriosProximaPagina(page = 2) } returns gitHubResponse1
-
-
-
     }
 
     @Test

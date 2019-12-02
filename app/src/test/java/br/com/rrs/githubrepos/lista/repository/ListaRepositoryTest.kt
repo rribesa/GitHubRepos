@@ -61,7 +61,6 @@ class ListaRepositoryTest {
             val lista = repository.listarRepositorios(1)
             Assert.assertEquals(1, lista.size)
             Assert.assertTrue(repository.dadosCache)
-
         }
     }
 
@@ -84,5 +83,4 @@ class ListaRepositoryTest {
         }
         return GitListaRepositorioResponse(lista)
     }
-
 }

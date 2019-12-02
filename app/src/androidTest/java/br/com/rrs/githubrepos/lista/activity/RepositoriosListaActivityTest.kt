@@ -26,7 +26,6 @@ import org.junit.Rule
 import org.junit.Test
 import utils.Resources.lerArquivo
 
-
 @LargeTest
 class RepositoriosListaActivityTest {
 
@@ -52,7 +51,6 @@ class RepositoriosListaActivityTest {
             server.url("/").toString()
         )
     }
-
 
     @Test
     fun aoClicarDeveExibirDetalhes() {
@@ -89,7 +87,6 @@ class RepositoriosListaActivityTest {
         Thread.sleep(500)
         onView(withId(R.id.warning_lista)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-
 
     fun adicionarRequisicao(statusCode: Int, nomeArquivoResources: String) {
         server.enqueue(

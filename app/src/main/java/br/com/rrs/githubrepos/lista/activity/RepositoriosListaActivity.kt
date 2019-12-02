@@ -22,7 +22,6 @@ import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubInteractor
 import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubStates
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class RepositoriosListaActivity : AppCompatActivity() {
     private lateinit var listaRepositorios: RecyclerView
     private lateinit var loading: ProgressBar
@@ -59,7 +58,6 @@ class RepositoriosListaActivity : AppCompatActivity() {
         })
         gitHubViewModel.inicio()
     }
-
 
     private fun observarEventos() {
         gitHubViewModel.viewEvent.observe(this, Observer { event ->
@@ -121,7 +119,5 @@ class RepositoriosListaActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         listaRepositorios.visibility = View.VISIBLE
-
     }
-
 }

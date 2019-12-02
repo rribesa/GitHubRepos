@@ -1,6 +1,5 @@
 package br.com.rrs.githubrepos.lista.di
 
-
 import androidx.room.Room
 import br.com.rrs.githubrepos.ListaDataBase
 import br.com.rrs.githubrepos.WebClient
@@ -32,4 +31,3 @@ object GitHubDI {
 
     fun init() = loadKoinModules(viewModelModule)
 }
-

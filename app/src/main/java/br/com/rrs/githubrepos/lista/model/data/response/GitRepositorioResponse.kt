@@ -18,4 +18,3 @@ data class GitRepositorioResponse(
     @SerializedName("stargazers_count")
     override val quantidadeEstrelasRepositorio: Int
 ) : Parcelable, GitRepositorio
-

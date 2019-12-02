@@ -69,5 +69,4 @@ class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel(
     fun resetEvent() {
         event.value = null
     }
-
 }

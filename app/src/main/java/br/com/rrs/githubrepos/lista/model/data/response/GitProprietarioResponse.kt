@@ -1,6 +1,5 @@
 package br.com.rrs.githubrepos.lista.model.data.response
 
-
 import android.os.Parcelable
 import br.com.rrs.githubrepos.lista.model.GitProprietario
 import com.google.gson.annotations.SerializedName

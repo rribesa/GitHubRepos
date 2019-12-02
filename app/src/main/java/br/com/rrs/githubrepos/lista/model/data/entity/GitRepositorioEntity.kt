@@ -18,4 +18,3 @@ data class GitRepositorioEntity(
     override val proprietarioRepositorio: GitProprietarioEntity,
     override val quantidadeEstrelasRepositorio: Int
 ) : Parcelable, GitRepositorio
-

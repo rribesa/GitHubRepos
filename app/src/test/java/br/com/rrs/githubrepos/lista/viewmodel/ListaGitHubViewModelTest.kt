@@ -123,6 +123,7 @@ class ListaGitHubViewModelTest {
             Assert.assertEquals(ListaGitHubEvent.ExibeInformacaoCache(View.VISIBLE), viewModel.viewEvent.value)
         }
     }
+
     @Test
     fun `quando resetar o evento o event deve retornar nul`() {
         val viewModel = ListaGitHubViewModel(useCaseSucesso)
@@ -141,6 +142,5 @@ class ListaGitHubViewModelTest {
             lista.add(repositorio)
         }
         return lista
-
     }
 }

@@ -9,4 +9,3 @@ interface GitRepositorio : Parcelable {
     val proprietarioRepositorio: GitProprietario
     val quantidadeEstrelasRepositorio: Int
 }
-
