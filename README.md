@@ -1,6 +1,6 @@
 # GitHubRepos
 
-Este projeto tem a finalidade de estudo, ele consome as apis do github.
+Este projeto tem a finalidade de estudo, ele consome as APIs do GIT HUB.
 
 
 ## Arquitetura
@@ -22,7 +22,7 @@ viewmodel: aplicação da arquitetura e deixar a view reativa
 
 koin: injeção de dependência
 
-junit: testes unitarios
+junit: testes unitários
 
 mockk: mocar os objetos dentro dos testes
 
@@ -38,11 +38,12 @@ aplicar o navigattionComponentes
 anunciar via acessibility delegate toda vez que o progressbar aparecer na tela
 
 ## Observacoes
-Decidi por usar sealedClass com as seguintes definicoes
+Optei por colocar botões na recyclerview apenas para facilitar a acessibilidade, permitindo a navegacao por controles em cada item
+
+Decidi por usar sealedClass com as seguintes definições
 
 State: Mapeia os estados da tela, optei por apenas sucesso e Erro
 
-Event: Apenas os eventos que nao devem guardar os estados, optei por Nao criar uma classe de liveEvent e sim por resetar o evento após ele ser emitido pois facilitaria os testes
+Event: Apenas os eventos que não devem guardar os estados, optei por Não criar uma classe de liveEvent e sim por resetar o evento após ele ser emitido pois facilitaria os testes
 
-Interactors: Tem a Funcao de mapear todas as interacoes do Usuario, desta forma a viewmodel expõe apenas dois métodos publicos, o para iniciar e o interpretador
-
+Interactors: Tem a Funcao de mapear todas as interações do Usuário, desta forma a viewmodel expõe apenas dois métodos públicos, o para iniciar e o interpretador
