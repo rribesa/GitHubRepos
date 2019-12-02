@@ -31,9 +31,15 @@ class ListaGitHubUseCaseTest {
         every { gitHubResponse.size } returns 0
         every { gitHubResponse1.size } returns 1
         coEvery { repository.listarRepositorios(page = 1) } returns gitHubResponse
+        coEvery { repository.listaRepositoriosProximaPagina(page = 1) } returns gitHubResponse
+
         every { repositoryCache.dadosCache } returns true
         every { repository.dadosCache } returns false
         coEvery { repository.listarRepositorios(page = 2) } returns gitHubResponse1
+        coEvery { repository.listaRepositoriosProximaPagina(page = 2) } returns gitHubResponse1
+        coEvery { repositoryCache.listaRepositoriosProximaPagina(page = 2) } returns gitHubResponse1
+
+
 
     }
 
@@ -56,11 +62,23 @@ class ListaGitHubUseCaseTest {
     }
 
     @Test
-    fun `quando chamar listarRepositoriosProximaPagina com o cache true deve retornar null`() {
+    fun `quando chamar listarRepositoriosProximaPagina com o cache true deve retornar lista`() {
         val usecase = ListaGitHubUseCase(repositoryCache)
         runBlocking {
             val lista = usecase.listarProximaPaginaRepositoriosGitHub()
-            Assert.assertNull(lista)
+            assertEquals(1, lista.size)
         }
+    }
+
+    @Test
+    fun `quando chamar a Lista esta Local com o cache deve Retornar True`() {
+        val usecase = ListaGitHubUseCase(repositoryCache)
+        Assert.assertTrue(usecase.aListaEstaLocal())
+    }
+
+    @Test
+    fun `quando chamar a Lista esta Local sem o cache deve Retornar False`() {
+        val usecase = ListaGitHubUseCase(repository)
+        Assert.assertFalse(usecase.aListaEstaLocal())
     }
 }

@@ -1,4 +1,4 @@
-package br.com.rrs.githubrepos.lista
+package br.com.rrs.githubrepos.lista.repository.api
 
 import br.com.rrs.githubrepos.lista.model.data.response.GitListaRepositorioResponse
 import retrofit2.http.GET

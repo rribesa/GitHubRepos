@@ -1,12 +1,12 @@
 package br.com.rrs.githubrepos.lista.repository
 
-import br.com.rrs.githubrepos.lista.Service
-import br.com.rrs.githubrepos.lista.listaDataBase.ListaDataBase
+import br.com.rrs.githubrepos.ListaDataBase
 import br.com.rrs.githubrepos.lista.model.data.entity.GitProprietarioEntity
 import br.com.rrs.githubrepos.lista.model.data.entity.GitRepositorioEntity
 import br.com.rrs.githubrepos.lista.model.data.response.GitListaRepositorioResponse
 import br.com.rrs.githubrepos.lista.model.data.response.GitProprietarioResponse
 import br.com.rrs.githubrepos.lista.model.data.response.GitRepositorioResponse
+import br.com.rrs.githubrepos.lista.repository.api.Service
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -14,7 +14,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 
 class ListaRepositoryTest {
 
@@ -40,6 +39,16 @@ class ListaRepositoryTest {
         val repository = ListaRepository(service, database)
         runBlocking {
             val lista = repository.listarRepositorios(1)
+            Assert.assertEquals(2, lista.size)
+            Assert.assertFalse(repository.dadosCache)
+        }
+    }
+
+    @Test
+    fun `quando chamar a Api para a proxima pagina retornar sucesso e retornar os dados da api`() {
+        val repository = ListaRepository(service, database)
+        runBlocking {
+            val lista = repository.listaRepositoriosProximaPagina(1)
             Assert.assertEquals(2, lista.size)
             Assert.assertFalse(repository.dadosCache)
         }

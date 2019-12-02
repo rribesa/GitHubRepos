@@ -2,8 +2,8 @@ package br.com.rrs.githubrepos.lista.di
 
 
 import androidx.room.Room
-import br.com.rrs.githubrepos.lista.WebClient
-import br.com.rrs.githubrepos.lista.listaDataBase.ListaDataBase
+import br.com.rrs.githubrepos.ListaDataBase
+import br.com.rrs.githubrepos.WebClient
 import br.com.rrs.githubrepos.lista.repository.ListaRepository
 import br.com.rrs.githubrepos.lista.usecase.ListaGitHubUseCase
 import br.com.rrs.githubrepos.lista.viewmodel.ListaGitHubViewModel

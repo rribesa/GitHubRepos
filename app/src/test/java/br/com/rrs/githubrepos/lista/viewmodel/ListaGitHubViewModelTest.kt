@@ -108,6 +108,22 @@ class ListaGitHubViewModelTest {
     }
 
     @Test
+    fun `quando entrar com interactor ChamarProximaPagina com error`() {
+        val viewModel = ListaGitHubViewModel(useCaseError)
+        runBlocking {
+            viewModel.interpretar(ListaGitHubInteractor.ChamarProximaPagina())
+        }
+    }
+
+    @Test
+    fun `quando entrar com interactor ChamarProximaPagina com cache deve devolver o Evento para exibir aviso`() {
+        val viewModel = ListaGitHubViewModel(useCaseCache)
+        runBlocking {
+            viewModel.interpretar(ListaGitHubInteractor.ChamarProximaPagina())
+            Assert.assertEquals(ListaGitHubEvent.ExibeInformacaoCache(View.VISIBLE), viewModel.viewEvent.value)
+        }
+    }
+    @Test
     fun `quando resetar o evento o event deve retornar nul`() {
         val viewModel = ListaGitHubViewModel(useCaseSucesso)
         runBlocking {

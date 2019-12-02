@@ -1,10 +1,10 @@
 package br.com.rrs.githubrepos.lista.repository
 
-import br.com.rrs.githubrepos.lista.Service
-import br.com.rrs.githubrepos.lista.listaDataBase.ListaDataBase
+import br.com.rrs.githubrepos.ListaDataBase
 import br.com.rrs.githubrepos.lista.model.GitRepositorio
 import br.com.rrs.githubrepos.lista.model.data.entity.GitProprietarioEntity
 import br.com.rrs.githubrepos.lista.model.data.entity.GitRepositorioEntity
+import br.com.rrs.githubrepos.lista.repository.api.Service
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

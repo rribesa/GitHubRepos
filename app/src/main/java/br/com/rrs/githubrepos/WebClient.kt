@@ -1,5 +1,6 @@
-package br.com.rrs.githubrepos.lista
+package br.com.rrs.githubrepos
 
+import br.com.rrs.githubrepos.lista.repository.api.Service
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,5 +23,7 @@ object WebClient {
         .client(setClient().build())
         .build()
 
-    fun service(): Service = retrofit().create(Service::class.java)
+    fun service(): Service = retrofit().create(
+        Service::class.java
+    )
 }
