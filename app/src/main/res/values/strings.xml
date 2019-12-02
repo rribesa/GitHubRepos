@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Git Hub Repos</string>
+    <string name="repositorio_github_title">Repositórios GIT Hub</string>
+    <string name="tentar_novamente">Tentar Novamente</string>
+    <string name="repositorio_title">Repositório</string>
+    <string name="imagem_do_autor_acessibilidade">imagem do proprietário</string>
+    <string name="forks_title">Forks</string>
+    <string name="estrelas_title">Estrelas</string>
+    <string name="autor_title">Proprietário</string>
+    <string name="voltar_botao_acessibilidade">voltar</string>
+    <string name="detalhe_repositorio_text">Detalhes Repositório</string>
+</resources>

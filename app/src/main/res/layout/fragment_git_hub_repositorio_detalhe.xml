@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".detalhes.GitHubRepositorioDetalhe">
+
+
+        <Button style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/voltar_bt"
+                android:contentDescription="@string/voltar_botao_acessibilidade"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+                android:text="@string/repositorio_title"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/repository_title"
+                style="@style/detalhes_titulo"
+                app:layout_constraintTop_toBottomOf="@+id/imagem_autor"/>
+
+        <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                tools:src="@tools:sample/avatars[1]"
+                android:id="@+id/imagem_autor"
+                android:contentDescription="@string/imagem_do_autor_acessibilidade"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/voltar_bt"/>
+        <TextView
+                android:text="@string/forks_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/forks_title"
+                style="@style/detalhes_titulo"
+                app:layout_constraintTop_toBottomOf="@+id/repositorio_text"
+        />
+        <TextView
+                android:text="@string/estrelas_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/estrelas_title"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/detalhes_titulo" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/forks_text"/>
+
+        <TextView
+                android:text="@string/autor_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/autor_title"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/detalhes_titulo"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/estrelas_text"/>
+
+        <TextView
+                tools:text="@tools:sample/first_names"
+                android:id="@+id/repositorio_text"
+                app:layout_constraintStart_toStartOf="@+id/repository_title"
+                app:layout_constraintTop_toBottomOf="@+id/repository_title"
+                style="@style/texto_normal_detalhes"/>
+        <TextView
+                tools:text="10"
+                android:id="@+id/forks_text"
+                app:layout_constraintStart_toStartOf="@+id/forks_title"
+                app:layout_constraintTop_toBottomOf="@+id/forks_title"
+                style="@style/texto_normal_detalhes"/>
+
+        <TextView
+                tools:text="5"
+                android:id="@+id/estrelas_text"
+                app:layout_constraintStart_toStartOf="@+id/estrelas_title"
+                app:layout_constraintTop_toBottomOf="@+id/estrelas_title"
+                style="@style/texto_normal_detalhes"/>
+
+        <TextView
+                tools:text="@tools:sample/full_names"
+                android:id="@+id/autor_text"
+                app:layout_constraintStart_toStartOf="@+id/autor_title"
+                app:layout_constraintTop_toBottomOf="@+id/autor_title"
+                style="@style/texto_normal_detalhes"/>
+
+        <TextView
+                android:text="@string/detalhe_repositorio_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView10"
+                android:accessibilityHeading="true"
+                style="@style/detalhes_titulo"
+                android:textColor="#000000"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/voltar_bt"
+                app:layout_constraintStart_toStartOf="@+id/voltar_bt" tools:targetApi="p"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

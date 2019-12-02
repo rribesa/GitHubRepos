@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#006E7E</color>
+    <color name="colorPrimaryDark">#00333C</color>
+    <color name="colorAccent">#FFEB3B</color>
+
+    <color name="tentar_novamente_botao">#673AB7</color>
+</resources>
