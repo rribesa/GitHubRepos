@@ -9,4 +9,7 @@
     <string name="autor_title">Proprietário</string>
     <string name="voltar_botao_acessibilidade">voltar</string>
     <string name="detalhe_repositorio_text">Detalhes Repositório</string>
+    <string name="aviso_usando_cache">Houve um Problema com a conexão, você está acessando os dados locais, clique para
+        fechar
+    </string>
 </resources>

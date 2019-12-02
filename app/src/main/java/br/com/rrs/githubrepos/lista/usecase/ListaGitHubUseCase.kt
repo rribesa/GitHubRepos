@@ -13,4 +13,7 @@ class ListaGitHubUseCase(private val repository: ListaRepository) {
         page++
         return listarRepositoriosGitHub()
     }
+
+
+    fun aListaEstaLocal() = repository.dadosCache
 }

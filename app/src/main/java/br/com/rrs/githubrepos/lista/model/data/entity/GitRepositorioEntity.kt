@@ -10,8 +10,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "gitHubRepo")
 data class GitRepositorioEntity(
-    @PrimaryKey
     override val quantidadeForksRepositorio: Int,
+    @PrimaryKey
     override val idRepositorio: Int,
     override val nomeRepositorio: String,
     @Embedded

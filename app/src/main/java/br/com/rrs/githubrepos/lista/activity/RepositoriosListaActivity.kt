@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.Group
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -28,6 +29,7 @@ class RepositoriosListaActivity : AppCompatActivity() {
     private lateinit var tentarNovamenteBotao: Button
     private lateinit var errorText: TextView
     private lateinit var grupoErro: Group
+    private lateinit var cardAviso: CardView
 
     val gitHubViewModel: ListaGitHubViewModel by viewModel()
     var adapter: RepositoriosListaAdapter? = null
@@ -40,6 +42,8 @@ class RepositoriosListaActivity : AppCompatActivity() {
         tentarNovamenteBotao = findViewById(R.id.button)
         errorText = findViewById(R.id.textView)
         grupoErro = findViewById(R.id.grupo_error)
+        cardAviso = findViewById(R.id.warning_lista)
+        cardAviso.setOnClickListener { exibeAviso(View.GONE) }
         observarStates()
         observarEventos()
     }
@@ -63,7 +67,8 @@ class RepositoriosListaActivity : AppCompatActivity() {
                 when (it) {
                     is ListaGitHubEvent.NavegarDetalhes -> navegarDetalhes(it.navegarDetalhes)
                     is ListaGitHubEvent.ExibeLoading -> exibeLoading(it.loadingVisibility)
-
+                    is ListaGitHubEvent.ExibeInformacaoCache -> exibeAviso(it.loadingVisibility)
+                    is ListaGitHubEvent.AtualizaInformacoesCache -> atualizaListaCache()
                 }
             }
         })
@@ -75,10 +80,19 @@ class RepositoriosListaActivity : AppCompatActivity() {
         loading.visibility = visibility
     }
 
+    private fun exibeAviso(visibility: Int) {
+        cardAviso.visibility = visibility
+    }
+
     private fun atualizaLista(itens: List<GitRepositorio>) {
         grupoErro.visibility = View.GONE
         loading.visibility = View.GONE
         adapter?.notifyDataSetChanged() ?: preencheLista(itens)
+    }
+
+    private fun atualizaListaCache() {
+        adapter?.notifyDataSetChanged()
+        cardAviso.visibility = View.VISIBLE
     }
 
     private fun exibeErro(exception: Exception) {

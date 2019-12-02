@@ -18,4 +18,7 @@ interface ListaDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllRepositorio(repositorio: MutableList<GitRepositorioEntity>)
 
+    @Query("DELETE FROM gitHubRepo")
+    suspend fun deleteAll()
+
 }

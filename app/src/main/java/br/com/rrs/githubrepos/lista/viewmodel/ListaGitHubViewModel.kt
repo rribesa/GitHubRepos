@@ -5,12 +5,13 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.rrs.githubrepos.lista.model.GitRepositorio
 import br.com.rrs.githubrepos.lista.usecase.ListaGitHubUseCase
 import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubEvent
 import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubInteractor
 import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubStates
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 
 class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel() {
     private val state: MutableLiveData<ListaGitHubStates> = MutableLiveData()
@@ -19,18 +20,18 @@ class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel(
     private val event: MutableLiveData<ListaGitHubEvent> = MutableLiveData()
     val viewEvent: LiveData<ListaGitHubEvent> = event
 
-    val job = SupervisorJob()
-    private val scope = CoroutineScope(Dispatchers.Main + job)
-
     private var firstTime = true
 
     fun inicio() {
         if (firstTime) {
-            scope.launch {
+            viewModelScope.launch {
                 event.value = ListaGitHubEvent.ExibeLoading(View.VISIBLE)
                 try {
                     state.value = ListaGitHubStates.ListaGitHubSucesso(useCase.listarRepositoriosGitHub())
                     firstTime = false
+                    if (useCase.aListaEstaLocal()) {
+                        event.value = ListaGitHubEvent.ExibeInformacaoCache(View.VISIBLE)
+                    }
                 } catch (exception: Exception) {
                     state.value = ListaGitHubStates.ListaGitHubError(exception)
                 }
@@ -47,10 +48,14 @@ class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel(
     }
 
     private fun proximaPaginaRepositorio() {
-        scope.launch {
-            event.value = ListaGitHubEvent.ExibeLoading(View.VISIBLE)
+        viewModelScope.launch {
             try {
-                state.value = ListaGitHubStates.ListaGitHubSucesso(useCase.listarProximaPaginaRepositoriosGitHub())
+                if (useCase.aListaEstaLocal()) {
+                    event.value = ListaGitHubEvent.ExibeInformacaoCache(View.VISIBLE)
+                } else {
+                    state.value = ListaGitHubStates.ListaGitHubSucesso(useCase.listarProximaPaginaRepositoriosGitHub())
+                }
+
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 Log.e("Viewmodel", exception.message)
@@ -66,11 +71,6 @@ class ListaGitHubViewModel(private val useCase: ListaGitHubUseCase) : ViewModel(
 
     fun resetEvent() {
         event.value = null
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job.cancelChildren()
     }
 
 }

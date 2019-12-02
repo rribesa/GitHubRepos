@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 
 class ListaRepository(private val service: Service, private val database: ListaDataBase) {
     private val listaGitHubRepos: MutableList<GitRepositorio> = ArrayList()
+    var dadosCache = false
     suspend fun listarRepositorios(page: Int) = withContext(Dispatchers.IO) {
         try {
             listaGitHubRepos.addAll(service.getHubRepos(page = page).repositoriosLista)
@@ -27,7 +28,8 @@ class ListaRepository(private val service: Service, private val database: ListaD
     }
 
     private suspend fun listarRepositoriosCache() = withContext(Dispatchers.IO) {
-        database.listaDao().getRepositoriosCache()
+        dadosCache = true
+        return@withContext database.listaDao().getRepositoriosCache()
     }
 
     private suspend fun salvarCache(repositorio: MutableList<GitRepositorio>) {

@@ -41,6 +41,7 @@ class ListaRepositoryTest {
         runBlocking {
             val lista = repository.listarRepositorios(1)
             Assert.assertEquals(2, lista.size)
+            Assert.assertFalse(repository.dadosCache)
         }
     }
 
@@ -50,6 +51,8 @@ class ListaRepositoryTest {
         runBlocking {
             val lista = repository.listarRepositorios(1)
             Assert.assertEquals(1, lista.size)
+            Assert.assertTrue(repository.dadosCache)
+
         }
     }
 

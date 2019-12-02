@@ -12,6 +12,7 @@ import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubInteractor
 import br.com.rrs.githubrepos.lista.viewmodel.states.ListaGitHubStates
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -23,6 +24,9 @@ import org.junit.Test
 class ListaGitHubViewModelTest {
     @MockK
     lateinit var useCaseSucesso: ListaGitHubUseCase
+
+    @MockK
+    lateinit var useCaseCache: ListaGitHubUseCase
     @MockK
     lateinit var useCaseError: ListaGitHubUseCase
     var exception = java.lang.NullPointerException()
@@ -37,6 +41,11 @@ class ListaGitHubViewModelTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
         coEvery { useCaseSucesso.listarRepositoriosGitHub() } returns mockRetornoUsecase(2)
         coEvery { useCaseSucesso.listarProximaPaginaRepositoriosGitHub() } returns mockRetornoUsecase(4)
+        every { useCaseSucesso.aListaEstaLocal() } returns false
+
+        coEvery { useCaseCache.listarRepositoriosGitHub() } returns mockRetornoUsecase(2)
+        every { useCaseCache.aListaEstaLocal() } returns true
+
         coEvery { useCaseError.listarRepositoriosGitHub() } throws exception
     }
 
@@ -47,6 +56,16 @@ class ListaGitHubViewModelTest {
             viewModel.inicio()
             Assert.assertEquals(ListaGitHubStates.ListaGitHubSucesso(mockRetornoUsecase(2)), viewModel.viewState.value)
             Assert.assertEquals(ListaGitHubEvent.ExibeLoading(View.VISIBLE), viewModel.viewEvent.value)
+        }
+    }
+
+    @Test
+    fun `quando iniciar a viewmodel deve retornar uma lista com cache com 2 itens`() {
+        val viewModel = ListaGitHubViewModel(useCaseCache)
+        runBlocking {
+            viewModel.inicio()
+            Assert.assertEquals(ListaGitHubStates.ListaGitHubSucesso(mockRetornoUsecase(2)), viewModel.viewState.value)
+            Assert.assertEquals(ListaGitHubEvent.ExibeInformacaoCache(View.VISIBLE), viewModel.viewEvent.value)
         }
     }
 
@@ -85,7 +104,6 @@ class ListaGitHubViewModelTest {
         runBlocking {
             viewModel.interpretar(ListaGitHubInteractor.ChamarProximaPagina())
             Assert.assertEquals(ListaGitHubStates.ListaGitHubSucesso(mockRetornoUsecase(4)), viewModel.viewState.value)
-            Assert.assertEquals(ListaGitHubEvent.ExibeLoading(View.VISIBLE), viewModel.viewEvent.value)
         }
     }
 
