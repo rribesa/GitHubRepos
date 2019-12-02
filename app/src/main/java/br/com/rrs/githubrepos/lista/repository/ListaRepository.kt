@@ -19,8 +19,10 @@ class ListaRepository(private val service: Service, private val database: ListaD
             if (listarRepositoriosCache().isNotEmpty()) {
                 listaGitHubRepos.clear()
                 listaGitHubRepos.addAll(listarRepositoriosCache())
+                return@withContext listaGitHubRepos
+            } else {
+                throw exception
             }
-            return@withContext listaGitHubRepos
         }
     }
 
