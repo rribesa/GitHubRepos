@@ -1,7 +1,9 @@
 # GitHubRepos
 
-Este projeto tem a finalidade de estudo, ele consome as API do GIT HUB.
+[![CircleCI](https://circleci.com/gh/rribesa/GitHubRepos/tree/master.svg?style=svg)](https://circleci.com/gh/rribesa/GitHubRepos/tree/master)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
+Este projeto tem a finalidade de estudo, ele consome as API do GIT HUB.
 
 ## Arquitetura
 
